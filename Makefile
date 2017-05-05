@@ -1,5 +1,11 @@
-all: persianas
-persianas:  persianas.o gpio.o
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $+ -o $@ -lwiringPi -lrt -llirc_client 
+IRgpio_objects = IRgpio.o  
+
+all : IRgpio 
+
+IRgpio: $(IRgpio_objects)
+	g++ -o IRgpio $(IRgpio_objects) -lwiringPi -lrt -llirc_client
+
+IRgpio:IRgpio.cpp
+
 clean:
-	$(RM) *.o
+	rm -f *.o IRgpio 
